@@ -9,7 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let stackView = UIStackView()
     let label = UILabel()
+    let button = UIButton()
     
     //MARK: - Properties
     private var counter = 0 {
@@ -22,15 +24,50 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        style()
+        layout()
     }
-    
-    //MARK: - Methods
+}
+
+//MARK: - Private Methods
+extension ViewController {
     private func setup() {
-        view.backgroundColor = .systemBackground
         counter = 0
     }
     
-    //MARK: - Actions
+    private func style() {
+        view.backgroundColor = .systemBackground
+        
+        stackView.axis = .vertical
+        stackView.spacing = 40
+
+        label.textAlignment = .center
+        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        label.numberOfLines = 0
+        
+        button.setTitle("Увеличить счетчик", for: .normal)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.backgroundColor = .systemGray
+    }
     
+    private func layout() {
+        [ label,
+          button
+        ].forEach { item in
+            item.translatesAutoresizingMaskIntoConstraints = false
+            stackView.addArrangedSubview(item)
+        }
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 2),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2),
+        ])
+    }
 }
 
