@@ -8,9 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    //MARK: - Outlets
-    @IBOutlet weak var label: UILabel!
+    
+    let label = UILabel()
     
     //MARK: - Properties
     private var counter = 0 {
@@ -27,13 +26,11 @@ class ViewController: UIViewController {
     
     //MARK: - Methods
     private func setup() {
+        view.backgroundColor = .systemBackground
         counter = 0
     }
     
     //MARK: - Actions
-    @IBAction func buttonTaped(_ sender: UIButton) {
-        counter += 1
-    }
     
 }
 
