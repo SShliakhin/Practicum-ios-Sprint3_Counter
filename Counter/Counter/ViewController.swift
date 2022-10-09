@@ -33,6 +33,7 @@ class ViewController: UIViewController {
 extension ViewController {
     private func setup() {
         counter = 0
+        button.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
     }
     
     private func style() {
@@ -71,3 +72,9 @@ extension ViewController {
     }
 }
 
+//MARK: - Actions
+extension ViewController {
+    @objc func buttonTapped () {
+        counter += 1
+    }
+}
