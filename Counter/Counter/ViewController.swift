@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     private let stackView = UIStackView()
     private let counterLabel = UILabel()
     private let incrementCounterButton = UIButton()
