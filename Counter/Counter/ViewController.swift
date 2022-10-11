@@ -9,14 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let stackView = UIStackView()
-    let label = UILabel()
-    let button = UIButton()
+    private let stackView = UIStackView()
+    private let counterLabel = UILabel()
+    private let incrementCounterButton = UIButton()
     
     //MARK: - Properties
     private var counter = 0 {
         didSet {
-            label.text = "Значение счетчика: \(counter)"
+            counterLabel.text = "Значение счетчика: \(counter)"
         }
     }
     
@@ -24,8 +24,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        style()
-        layout()
+        applyStyle()
+        applyLayout()
     }
 }
 
@@ -33,28 +33,28 @@ class ViewController: UIViewController {
 extension ViewController {
     private func setup() {
         counter = 0
-        button.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
+        incrementCounterButton.addTarget(self, action: #selector(incrementCounterButtonTapped), for: .primaryActionTriggered)
     }
     
-    private func style() {
+    private func applyStyle() {
         view.backgroundColor = .systemBackground
         
         stackView.axis = .vertical
         stackView.spacing = 40
 
-        label.textAlignment = .center
-        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        label.numberOfLines = 0
+        counterLabel.textAlignment = .center
+        counterLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        counterLabel.numberOfLines = 0
         
-        button.setTitle("Увеличить счетчик", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.backgroundColor = .systemGray
+        incrementCounterButton.setTitle("Увеличить счетчик", for: .normal)
+        incrementCounterButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        incrementCounterButton.setTitleColor(.systemBlue, for: .normal)
+        incrementCounterButton.backgroundColor = .systemGray
     }
     
-    private func layout() {
-        [ label,
-          button
+    private func applyLayout() {
+        [ counterLabel,
+          incrementCounterButton
         ].forEach { item in
             item.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview(item)
@@ -74,7 +74,7 @@ extension ViewController {
 
 //MARK: - Actions
 extension ViewController {
-    @objc func buttonTapped () {
+    @objc func incrementCounterButtonTapped() {
         counter += 1
     }
 }
